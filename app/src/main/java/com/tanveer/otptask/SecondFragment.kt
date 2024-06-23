@@ -45,6 +45,7 @@ class SecondFragment : Fragment() {
         // Inflate the layout for this fragment
         return binding?.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.etEnteredEmail?.setText(email)
@@ -73,22 +74,24 @@ class SecondFragment : Fragment() {
             }
         }
         binding?.btnVerify?.setOnClickListener {
-            if () {
-                Dialog(requireContext()).apply {
-                    setContentView(R.id.tvCongratulations)
-                    show()
-                }
-                findNavController().navigate(R.id.action_secondFragment_to_thirdFragment)
-            } else {
-                Dialog(requireContext()).apply {
-                    setContentView(R.id.tvSorry)
-                    show()
-                }
-
+            /* if () {
+            Dialog(requireContext()).apply {
+                setContentView(R.id.tvCongratulations)
+                show()
+            }*/
+            findNavController().navigate(R.id.action_secondFragment_to_thirdFragment)
             }
-        }
+
+           /* else {
+            Dialog(requireContext()).apply {
+                setContentView(R.id.tvSorry)
+                show()
+            }
+            }
+        }*/
 
     }
+
     companion object {
         /**
          * Use this factory method to create a new instance of

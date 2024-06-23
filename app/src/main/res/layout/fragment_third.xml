@@ -20,6 +20,18 @@
         android:textSize="@dimen/sp_20"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/sp_20"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/forgot_password"
+        android:textSize="@dimen/sp_30"
+        android:textStyle="bold"
+        android:backgroundTint="#46FB4D"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/sp_30"
+        android:id="@+id/btnForgot_password"
+        />
     <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

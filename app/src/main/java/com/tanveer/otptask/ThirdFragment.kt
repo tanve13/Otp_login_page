@@ -1,10 +1,14 @@
 package com.tanveer.otptask
 
+import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import com.tanveer.otptask.databinding.FragmentThirdBinding
 
@@ -41,15 +45,40 @@ class ThirdFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.btnSave?.setOnClickListener{
-            if(binding?.etEnterPassword?.text?.toString().isNullOrEmpty()){
-                binding?.etEnterPassword?.error = resources.getString(R.string.enter_password)
-            } else{
-                Toast.makeText(requireContext(), "Saved Successfully", Toast.LENGTH_SHORT).show()
-            }
+        binding?.btnForgotPassword?.setOnClickListener {
+                Dialog(requireContext()).apply {
+                    setContentView(R.layout.custom_layout3)
+                    show()
+                    val etNew_password = this.findViewById<EditText>(R.id.etNew_password)
+                    val btnSave_password = this.findViewById<Button>(R.id.btnSave_password)
+                    val btnCancel = this.findViewById<Button>(R.id.btnCancel)
+                    getWindow()?.setLayout(
+                        WindowManager.LayoutParams.MATCH_PARENT,
+                        WindowManager.LayoutParams.MATCH_PARENT)
+                    btnSave_password?.setOnClickListener {
+                        if(etNew_password?.text?.toString().isNullOrEmpty()){
+                            etNew_password?.error = resources.getString(R.string.enter_new_password)
+                        } else{
+                            binding?.etEnterPassword?.setText(etNew_password?.text?.toString())
+                            this.dismiss()
+                        }
+                    }
+                     btnCancel?.setOnClickListener {
+                        this.dismiss()
+                    }
+                }
         }
-    }
 
+            binding?.btnSave?.setOnClickListener {
+                if (binding?.etEnterPassword?.text?.toString().isNullOrEmpty()) {
+                    binding?.etEnterPassword?.error = resources.getString(R.string.enter_password)
+                } else {
+                    Toast.makeText(requireContext(), "Saved Successfully", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of
