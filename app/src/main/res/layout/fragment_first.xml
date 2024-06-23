@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".FirstFragment">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_your_email_to_get_otp"
+        android:textSize="@dimen/sp_40"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_your_email"
+        android:inputType="textEmailAddress"
+        android:textSize="@dimen/sp_20"
+        android:layout_marginTop="50sp"
+        android:id="@+id/etEnterEmail"
+        android:imeOptions="actionDone"
+        android:layout_gravity="center"/>
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50sp"
+        android:text="@string/get_Otp"
+        android:id="@+id/btnGet_otp"
+        android:textStyle="bold"
+        android:textSize="@dimen/sp_40"/>
+
+</LinearLayout>
