@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
 import androidx.navigation.fragment.findNavController
 import com.tanveer.otptask.databinding.FragmentSecondBinding
@@ -27,6 +28,7 @@ class SecondFragment : Fragment() {
     var binding: FragmentSecondBinding? = null
     var email = ""
     var mainActivity: MainActivity? = null
+    var verifiedNumber = listOf("6","7","4","2")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -55,41 +57,51 @@ class SecondFragment : Fragment() {
                 binding?.et2?.requestFocus()
             }
         }
-        binding?.et1?.onEditorAction(0)
         binding?.et2?.doOnTextChanged { _, _, _, _ ->
-            var otp = binding?.et1?.text?.toString() ?: ""
+                var otp = binding?.et1?.text?.toString() ?: ""
+                if (otp.length == 1) {
+                    binding?.et3?.requestFocus()
+                }
+        }
+        binding?.et2?.doAfterTextChanged {
+            var otp = binding?.et2?.text?.toString()?: ""
+            if(otp.length == 0) {
+                binding?.et1?.requestFocus()
+            }
+        }
+        binding?.et3?.doOnTextChanged { _, _, _, _ ->
+            var otp = binding?.et3?.text?.toString() ?: ""
             if (otp.length == 1) {
-                binding?.et3?.requestFocus()
-            } else {
+                binding?.et4?.requestFocus()
+            }
+        }
+        binding?.et3?.doAfterTextChanged {
+            var otp = binding?.et3?.text?.toString()?: ""
+            if(otp.length == 0) {
                 binding?.et2?.requestFocus()
             }
         }
-        binding?.et2?.onEditorAction(0)
-        binding?.et3?.doOnTextChanged { _, _, _, _ ->
-            var otp = binding?.et1?.text?.toString() ?: ""
-            if (otp.length == 1) {
-                binding?.et4?.requestFocus()
-            } else {
+        binding?.et4?.doAfterTextChanged {
+            var otp = binding?.et4?.text?.toString()?: ""
+            if(otp.length == 0) {
                 binding?.et3?.requestFocus()
             }
         }
         binding?.btnVerify?.setOnClickListener {
-            /* if () {
+            if (binding?.et1?.text?.toString() == verifiedNumber[0]&&binding?.et2?.text?.toString() == verifiedNumber[1]&&binding?.et3?.text?.toString() == verifiedNumber[2]&&binding?.et4?.text?.toString() == verifiedNumber[3]) {
             Dialog(requireContext()).apply {
-                setContentView(R.id.tvCongratulations)
+                setContentView(R.layout.custom_layout)
                 show()
-            }*/
+            }
             findNavController().navigate(R.id.action_secondFragment_to_thirdFragment)
             }
-
-           /* else {
+            else {
             Dialog(requireContext()).apply {
-                setContentView(R.id.tvSorry)
+                setContentView(R.layout.custom_layout2)
                 show()
             }
             }
-        }*/
-
+        }
     }
 
     companion object {
