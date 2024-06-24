@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/enter_password"
         android:id="@+id/etEnterPassword"
+        android:inputType="textWebPassword"
         android:textSize="@dimen/sp_20"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/sp_20"/>
