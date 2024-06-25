@@ -28,7 +28,6 @@ class SecondFragment : Fragment() {
     var binding: FragmentSecondBinding? = null
     var email = ""
     var mainActivity: MainActivity? = null
-    var verifiedNumber = listOf("6","7","4","2")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -36,9 +35,9 @@ class SecondFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
             mainActivity = activity as MainActivity
             email = it.getString("email") ?: ""
+            val otp = it.getString("otp") ?: ""
         }
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,48 +46,48 @@ class SecondFragment : Fragment() {
         // Inflate the layout for this fragment
         return binding?.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.etEnteredEmail?.setText(email)
         binding?.et1?.doOnTextChanged { _, _, _, _ ->
-            var otp = binding?.et1?.text?.toString() ?: ""
+            val otp = binding?.et1?.text?.toString() ?: ""
             if (otp.length == 1) {
                 binding?.et2?.requestFocus()
             }
         }
         binding?.et2?.doOnTextChanged { _, _, _, _ ->
-                var otp = binding?.et1?.text?.toString() ?: ""
+                val otp = binding?.et1?.text?.toString() ?: ""
                 if (otp.length == 1) {
                     binding?.et3?.requestFocus()
                 }
         }
         binding?.et2?.doAfterTextChanged {
-            var otp = binding?.et2?.text?.toString()?: ""
+            val otp = binding?.et2?.text?.toString()?: ""
             if(otp.length == 0) {
                 binding?.et1?.requestFocus()
             }
         }
         binding?.et3?.doOnTextChanged { _, _, _, _ ->
-            var otp = binding?.et3?.text?.toString() ?: ""
+            val otp = binding?.et3?.text?.toString() ?: ""
             if (otp.length == 1) {
                 binding?.et4?.requestFocus()
             }
         }
         binding?.et3?.doAfterTextChanged {
-            var otp = binding?.et3?.text?.toString()?: ""
+            val otp = binding?.et3?.text?.toString()?: ""
             if(otp.length == 0) {
                 binding?.et2?.requestFocus()
             }
         }
         binding?.et4?.doAfterTextChanged {
-            var otp = binding?.et4?.text?.toString()?: ""
+            val otp = binding?.et4?.text?.toString()?: ""
             if(otp.length == 0) {
                 binding?.et3?.requestFocus()
             }
         }
         binding?.btnVerify?.setOnClickListener {
-            if (binding?.et1?.text?.toString() == verifiedNumber[0]&&binding?.et2?.text?.toString() == verifiedNumber[1]&&binding?.et3?.text?.toString() == verifiedNumber[2]&&binding?.et4?.text?.toString() == verifiedNumber[3]) {
+            "${binding?.et1?.text?.toString()}${binding?.et2?.text?.toString()}${binding?.et3?.text?.toString()}${binding?.et4?.text?.toString()}"
+           if( ){
             Dialog(requireContext()).apply {
                 setContentView(R.layout.custom_layout)
                 show()

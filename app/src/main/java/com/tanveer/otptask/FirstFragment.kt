@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.tanveer.otptask.databinding.FragmentFirstBinding
+import kotlin.random.Random
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -39,25 +40,26 @@ class FirstFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentFirstBinding.inflate(inflater)
-
-        // Inflate the layout for this fragment
-        return binding?.root
+    return binding?.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.btnGetOtp?.setOnClickListener{
             if(binding?.etEnterEmail?.text?.toString().isNullOrEmpty()){
                 binding?.etEnterEmail?.error = resources.getString(R.string.enter_your_email)
             }else {
-                var bundle = Bundle()
-                bundle.putString("email", binding?.etEnterEmail?.text?.toString())
+                val digit1 = Random.nextInt(0,9)
+                val digit2 = Random.nextInt(0,9)
+                val digit3 = Random.nextInt(0,9)
+                val digit4 = Random.nextInt(0,9)
+                val bundle = Bundle()
+                bundle.putString("email",binding?.etEnterEmail?.text?.toString())
+                bundle.putString("otp","$digit1$digit2$digit3$digit4")
                 findNavController().navigate(R.id.action_firstFragment_to_secondFragment,bundle)
                 try {
-                    var bundle = Bundle()
                     var intent = Intent(Intent.ACTION_SEND)
                     intent.setType("text/email")
-                    intent.putExtra(Intent.EXTRA_TEXT,"Your OTP is 6742")
+                    intent.putExtra(Intent.EXTRA_TEXT,"Your Generated OTP is $digit1$digit2$digit3$digit4")
                     startActivity(intent)
                 } catch (exception : Exception){
                     Toast.makeText(requireContext(), "cannot open email", Toast.LENGTH_SHORT).show()
@@ -66,7 +68,6 @@ class FirstFragment : Fragment() {
 
         }
     }
-
     companion object {
         /**
          * Use this factory method to create a new instance of
