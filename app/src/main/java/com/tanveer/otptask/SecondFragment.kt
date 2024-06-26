@@ -27,6 +27,7 @@ class SecondFragment : Fragment() {
     private var param2: String? = null
     var binding: FragmentSecondBinding? = null
     var email = ""
+    var otp = ""
     var mainActivity: MainActivity? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +36,7 @@ class SecondFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
             mainActivity = activity as MainActivity
             email = it.getString("email") ?: ""
-            val otp = it.getString("otp") ?: ""
+             otp = it.getString("otp") ?: ""
         }
     }
     override fun onCreateView(
@@ -86,8 +87,8 @@ class SecondFragment : Fragment() {
             }
         }
         binding?.btnVerify?.setOnClickListener {
-            "${binding?.et1?.text?.toString()}${binding?.et2?.text?.toString()}${binding?.et3?.text?.toString()}${binding?.et4?.text?.toString()}"
-           if( ){
+           var number = "${binding?.et1?.text?.toString()}${binding?.et2?.text?.toString()}${binding?.et3?.text?.toString()}${binding?.et4?.text?.toString()}"
+           if(number==otp){
             Dialog(requireContext()).apply {
                 setContentView(R.layout.custom_layout)
                 show()
