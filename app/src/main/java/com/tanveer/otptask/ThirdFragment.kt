@@ -45,39 +45,18 @@ class ThirdFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.btnForgotPassword?.setOnClickListener {
-                Dialog(requireContext()).apply {
-                    setContentView(R.layout.custom_layout3)
-                    show()
-                    val etNew_password = this.findViewById<EditText>(R.id.etNew_password)
-                    val btnSave_password = this.findViewById<Button>(R.id.btnSave_password)
-                    val btnCancel = this.findViewById<Button>(R.id.btnCancel)
-                    getWindow()?.setLayout(
-                        WindowManager.LayoutParams.MATCH_PARENT,
-                        WindowManager.LayoutParams.MATCH_PARENT)
-                    btnSave_password?.setOnClickListener {
-                        if(etNew_password?.text?.toString().isNullOrEmpty()){
-                            etNew_password?.error = resources.getString(R.string.enter_new_password)
-                        } else{
-                            binding?.etEnterPassword?.setText(etNew_password?.text?.toString())
-                            this.dismiss()
-                        }
-                    }
-                     btnCancel?.setOnClickListener {
-                        this.dismiss()
-                    }
-                }
-        }
-
-            binding?.btnSave?.setOnClickListener {
-                if (binding?.etEnterPassword?.text?.toString().isNullOrEmpty()) {
-                    binding?.etEnterPassword?.error = resources.getString(R.string.enter_password)
-                } else {
-                    Toast.makeText(requireContext(), "Saved Successfully", Toast.LENGTH_SHORT)
-                        .show()
-                }
+        binding?.btnSave?.setOnClickListener {
+            if(binding?.etEnterPassword?.text?.toString()?.equals(binding?.etReEnterPassword?.text?.toString()) == true){
+                Toast.makeText(requireContext(),
+                    "password is changed",
+                    Toast.LENGTH_SHORT).show()
+            } else{
+                Toast.makeText(requireContext(),
+                    "password does not match",
+                    Toast.LENGTH_SHORT).show()
             }
 
+        }
     }
     companion object {
         /**

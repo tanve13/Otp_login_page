@@ -5,13 +5,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ThirdFragment">
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/enter_password"
-    android:textSize="@dimen/sp_30"
-    android:textStyle="bold"
-    android:layout_gravity="center" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_password"
+        android:textSize="@dimen/sp_30"
+        android:textStyle="bold"
+        android:layout_gravity="center" />
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,18 +21,23 @@
         android:textSize="@dimen/sp_20"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/sp_20"/>
-
-    <com.google.android.material.button.MaterialButton
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/forgot_password"
+        android:text="@string/re_enter_password"
         android:textSize="@dimen/sp_30"
         android:textStyle="bold"
-        android:backgroundTint="#46FB4D"
+        android:layout_marginTop="@dimen/sp_20"
+        android:layout_gravity="center" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/re_enter_password"
+        android:id="@+id/etReEnterPassword"
+        android:inputType="textWebPassword"
+        android:textSize="@dimen/sp_20"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/sp_30"
-        android:id="@+id/btnForgot_password"
-        />
+        android:layout_marginTop="@dimen/sp_20"/>
     <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
